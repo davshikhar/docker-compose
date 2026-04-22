@@ -13,7 +13,8 @@
 
 
 ## DOCKER INSTALLATION
-- install docker, docker desktop locally
+- install docker
+- start postgres
 - create a volume to keep the DB in sync:-
      ```docker volume create <your_volume_name>```
 - create a network to connect different containers
@@ -21,8 +22,12 @@
 - run the command:-
     ```docker run --name my_postgres -p 5432:5432 -v <your_volume_name>:/var/lib/postgresql/data```
 
+- build the image:- ```docker build -t user-project```
+
 - after above run this command:-
-    ```docker run -p 3000:3000 --name my_backend --network <your_network_name>```
+    ```docker run -p 3000:3000 --network <your_network_name> user-project```
 
 
 ## DOCKER COMPOSE INSTALLATION
+- install docker, docker-compose
+- run ```docker-compose up```
