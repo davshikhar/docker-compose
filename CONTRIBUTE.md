@@ -17,15 +17,15 @@
 - start postgres
 - create a volume to keep the DB in sync:-
      ```docker volume create <your_volume_name>```
-- create a network to connect different containers
-    ```docker network create <your_network_name>```
-- run the command:-
-    ```docker run --name my_postgres -p 5432:5432 -v <your_volume_name>:/var/lib/postgresql/data```
+- no need to create a network we will use the host's network to run the containers            "--network=host"
 
-- build the image:- ```docker build -t user-project```
+- run the command:-
+    ```docker run --name my_postgres -p 5432:5432 -v <your_volume_name>:/var/lib/postgresql postgres```
+
+- build the image:- ```docker build --network=host -t user-project .```
 
 - after above run this command:-
-    ```docker run -p 3000:3000 --network <your_network_name> user-project```
+    ```docker run -p 3000:3000 user-project```
 
 
 ## DOCKER COMPOSE INSTALLATION
