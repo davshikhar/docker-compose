@@ -11,8 +11,6 @@ RUN npm install
 
 COPY . .
 
-ENV DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/postgres"
-
 RUN npx prisma generate
 RUN npm run build
 
@@ -20,6 +18,8 @@ EXPOSE 3000
 
 COPY entrypoint.sh .
 
-RUN chmod +x entrypoint.sh
+#For testing
+# RUN chmod +x entrypoint.sh
+# CMD ["./entrypoint.sh"]
 
-CMD ["./entrypoint.sh"]
+CMD ["npm","run","dev:docker"]
